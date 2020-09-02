@@ -1,13 +1,18 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 
 function App() {
   const [techs, setTechs] = useState([]);
 
   const [newTech, setNewTech] = useState('');
 
-  function handleAdd() {
+  const handleAdd = useCallback(() => {
     setTechs([...techs, newTech]);
-  }
+    setNewTech('');
+  }, [newTech, techs]);// a função handleAdd sempre é montada novamente sempre que um desses valores alterar
+  //para evitar consumo de memória do processamento do JS, usa o useCallback
+
+  //agora, a handleAdd só vai ser recriada da memória do PC quando a variável
+  //newTech ou quando a variável techs sofrerem alterações
 
   useEffect(() => {
     const storageTech = localStorage.getItem('techs');
