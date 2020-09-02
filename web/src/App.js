@@ -25,6 +25,7 @@ function App() {
   const techsSize = useMemo(() => techs.length, [techs]);
   //a variável techSize só vai executar o techs.length quando a variavel techs mudar
 
+  //useMemo eh bom pra calculos de uma variavel ou dentro do render baseados em alterações de outras variaveis
   return (
     <>
       <ul>
